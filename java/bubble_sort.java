@@ -6,6 +6,7 @@ public class bubble_sort
 	{
 		int[] array = new int[5];
 		int n, i, aux;
+		boolean troca;
 
 		//Inserting data into the array
 		//
@@ -18,18 +19,22 @@ public class bubble_sort
 		}
 
 		//Sorting
-		
-		for(n = 1; n < 5; n++)
+		troca = true;
+		n = 1;
+		while(n <= 5 && troca)
 		{
-			for(i = 4; i >= n; i--)
+			troca = false;
+			for(i = 0; i < 4; i++)
 			{
-				if(array[i] < array[i-1])
+				if(array[i] < array[i+1])
 				{
+					troca = true;
 					aux = array[i];
-					array[i] = array[i-1];
-					array[i-1] = aux;
+					array[i] = array[i+1];
+					array[i+1] = aux;
 				}
 			}
+			n++;
 		}
 
 		//printing the array ordenated

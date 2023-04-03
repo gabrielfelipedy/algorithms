@@ -8,10 +8,10 @@ public class bubble_sort
 		int n, i, aux;
 
 		//Inserting data into the array
-
+		//
 		Scanner s = new Scanner(System.in);
 
-		for(i = 0, i < 5; i++)
+		for(i = 0; i < 5; i++)
 		{
 			System.out.println("Digite o "+(i+1)+"° número");
 			array[i] = s.nextInt();
@@ -35,7 +35,7 @@ public class bubble_sort
 		//printing the array ordenated
 		for(i = 0; i < 5; i++)
 		{
-			System.out.println((i+1)+"° Element: "+ array[i])
+			System.out.println((i+1)+"° Element: "+ array[i]);
 		}
 	}	
 }

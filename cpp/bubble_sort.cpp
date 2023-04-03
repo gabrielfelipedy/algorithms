@@ -14,15 +14,15 @@ int main()
 
 	//sorting
 	
-	for(n = 1; n <= 5; n++)
+	for(n = 1; n < 5; n++)
 	{
-		for(i = 0; i < 4; i++)
+		for(i = 4; i >= n; i--)
 		{
-			if(array[i] > array[i+1])
+			if(array[i] < array[i-1])
 			{
 			aux = array[i];
-			array[i] = array[i+1];
-			array[i+1] = aux;
+			array[i] = array[i-1];
+			array[i-1] = aux;
 			}
 		}
 	}

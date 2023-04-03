@@ -2,7 +2,7 @@
 
 int main()
 {
-	int array[5], i, n, aux;
+	int array[5], i, n, aux, troca;
 
 	//Getting data into the array
 
@@ -13,18 +13,23 @@ int main()
 	}
 
 	//sorting
-	
-	for(n = 1; n < 5; n++)
+	n = 1;
+	troca = 1;
+
+	while(n <= 5 && troca == 1)
 	{
-		for(i = 4; i >= n; i--)
+		troca = 0;
+		for(i = 0; i < 4; i++)
 		{
-			if(array[i] < array[i-1])
+			if(array[i] < array[i+1])
 			{
+			troca = 1;
 			aux = array[i];
-			array[i] = array[i-1];
-			array[i-1] = aux;
+			array[i] = array[i+1];
+			array[i+1] = aux;
 			}
 		}
+		n++;
 	}
 
 	//print

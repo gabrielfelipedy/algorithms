@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class sequential_search {
+public class ordenated_sequential_search {
 
 	public static void main(String[] args) {
 
@@ -8,19 +8,18 @@ public class sequential_search {
 		int i, n;
 		boolean achou;
 
-		Scanner s = new Scanner(System.in);
 		for(i=0; i < 10; i++) {
 
-			System.out.print("Type the "+(i+1)+"° number: ");
-			array[i] = s.nextInt();
+			array[i] = i+1;
 		}
 
+		Scanner s = new Scanner(System.in);
 		System.out.print("\nType the number to look for: ");
 		n = s.nextInt();
 
 		i=0;
 		achou = false;
-		while(!achou && i < 10) {
+		while(!achou && i < 10 && array[i] <= n) { 
 
 			if(array[i] == n) {
 				achou = true;

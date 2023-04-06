@@ -16,23 +16,48 @@ int main() {
 		std::cin >> array[1][i];
 	}
 
+	char c;
+	std::cout << "\nSelect an ordenation order [C/D]: ";
+	std::cin >> c;
+
 	//sort
 	for(i=0;i<5;i++) {
 		for(j=0;j<4;j++) {
 
 			int s1 = stoi(array[1][j]);
 			int s2 = stoi(array[1][j+1]);
+			
+			switch(c) {
 
-			if(s1 > s2) {
+			case 'C':
+			case 'c':
+				if(s1 > s2) {
 				
-				auxn = array[0][j];
-				auxs = array[1][j];
+					auxn = array[0][j];
+					auxs = array[1][j];
 
-				array[0][j] = array[0][j+1];
-				array[0][j+1] = auxn;
+					array[0][j] = array[0][j+1];
+					array[0][j+1] = auxn;
 
-				array[1][j] = array[1][j+1];
-				array[1][j+1] = auxs;
+					array[1][j] = array[1][j+1];
+					array[1][j+1] = auxs;
+				}
+				break;
+			case 'D':
+			case 'd':
+
+				if(s1 < s2) {
+
+                                        auxn = array[0][j];
+                                        auxs = array[1][j];
+
+                                        array[0][j] = array[0][j+1];
+                                        array[0][j+1] = auxn;
+
+                                        array[1][j] = array[1][j+1];
+                                        array[1][j+1] = auxs;
+                                }
+                                break;
 			}
 		}
 	}

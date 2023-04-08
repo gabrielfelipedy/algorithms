@@ -30,7 +30,7 @@ int main() {
 	{
 		std::copy(produtos[i], produtos[i] + 3, eleito);
 		j = i-1;
-		while(j>=0 && stoi(produtos[j][2]) > stoi(eleito[2])) {
+		while(j>=0 && stoi(produtos[j][1]) > stoi(eleito[1])) {
 			std::copy(produtos[j], produtos[j] + 3, produtos[j+1]);
 			j--;
 		}
@@ -45,21 +45,32 @@ int main() {
 		printProduct(produtos[i]);
 
 	//search
-	std::string codigo;
+	int codigo;
 	std::cout << "\nDigite o código do produto a ser buscado: ";
 	std::cin >> codigo;
 
-	i = 0;
+	int inicio = 0;
+	int fim = QTDE - 1;
+	int meio = (inicio+fim) / 2;
+
 	bool achou = false;
-	while(i < QTDE && !achou)
+	while(inicio <= fim && !achou)
 	{
-		if(produtos[i][1] == codigo) achou = true;
-		else i++;
+		if(stoi(produtos[meio][1]) == codigo) achou = true;
+		else {
+			if(codigo < stoi(produtos[meio][1]))
+			{
+				fim = meio - 1;
+			} else
+				inicio = meio + 1;
+
+			meio = (inicio+fim)/2;
+		}
 	}
 
 	if(achou) {
 		std::cout << "\nProduct found: \n" << std::endl;
-		printProduct(produtos[i]);
+		printProduct(produtos[meio]);
 	} else {
 		std::cout << "\nProduct not found\n";
 	}

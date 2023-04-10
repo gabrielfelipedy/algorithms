@@ -40,10 +40,23 @@ void ordena(int num[]) {
 
 int search(int np, int num[])
 {
-	for(int i =0; i < QTDE; i++)
+	int i, inicio, fim, meio;
+
+	inicio = 0;
+	fim = QTDE - 1;
+	meio = (inicio + fim) / 2;
+
+	while(inicio <= fim)
 	{
-		if(num[i] == np) return i;
-	
+		if(num[meio] == np) return meio;
+		else{
+			if(num[meio] > np)
+				fim = meio - 1;
+			else
+				inicio = meio + 1;
+
+			meio = (inicio + fim) / 2;
+		}
 	}
 	return 0;
 }

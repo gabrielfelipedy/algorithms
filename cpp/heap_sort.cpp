@@ -1,79 +1,61 @@
 #include <iostream>
 
-int array[11];
+void troca(int* a, int* b)
+{
+    *a ^= *b;
+    *b ^= *a;
+    *a ^= *b;
+}
 
-void heap_fica(int i, int qtde) {
+void heap_fica(int array[], int i, int tam)
+{
+	int esq = 2*i + 1;
+	int dir = 2*i + 2;
+	int maior = i;
 
-	int f_esq, f_dir, maior, aux;
-	maior = i;
+	if(esq < tam && array[esq] > array[maior])
+		maior = esq;
 
-	if(2*i+1 <= qtde) {
-
-		//The node have two sons
-		f_esq = 2*i+1;
-		f_dir = 2*i;
-		if(array[f_esq] >= array[f_dir] &&
-				array[f_esq] > array[i]) {
-			maior = 2*i+1;
-		} else if(array[f_dir] > array[f_esq] && array[f_dir] > array[i]) {
-
-			maior = 2*i;
-		}
-
-	} else if(2*i <= qtde) {
-
-		f_dir = 2*i;
-		if(array[f_dir] > array[i])
-			maior = 2*i;
-	}
+	if(dir < tam && array[dir] > array[maior])
+		maior = dir;
 
 	if (maior != i) {
-
-		aux = array[i];
-		array[i] = array[maior];
-		array[maior] = aux;
-		heap_fica(maior, qtde);
+		troca(&array[i], &array[maior]);
+		heap_fica(array, maior, tam);
 	}
 }
 
-void transforma_heap(int qtde) {
-
-	int i, pai, aux;
-	for(i=qtde/2;i>=1;i--) {
-
-		heap_fica(i, qtde);
+void transforma_heap(int array[], int qtde) {
+	for(int i = (qtde/2) - 1; i >= 0; i--) {
+		heap_fica(array, i, qtde);
 	}
 }
 
-void ordena(int qtde) {
+void heapsort(int array[], int qtde) {
 
-	int i, aux, ultima_pos;
-	for(i=qtde; i >= 2; i--) {
+	transforma_heap(array, qtde);
 
-		aux = array[1];
-		array[1] = array[i];
-		array[i] = aux;
-		ultima_pos = i - 1;
-		heap_fica(1, ultima_pos);
+	for(int i = qtde-1; i >= 1; i--)
+	{
+		troca(&array[0], &array[i]);
+		heap_fica(array, 0, i);
 	}
+}
+
+void printArray(int arr[], int size) {
+    for(int i = 0; i < size; i++)
+        std::cout << arr[i] << " ";
+
+    putchar('\n');
 }
 
 int main() {
 
-	int i, qtde;
-	for(i=1;i<11;i++) {
+	int arr[] = {1, 5, 4, 2, 5, 3, 3, 7};
+    int size = (sizeof(arr) / sizeof(arr[0]));
 
-		std::cout << "Type the " << i << "° element: ";
-		std::cin >> array[i];
-	}
-	qtde=10;
-	transforma_heap(qtde);
-	ordena(qtde);
+    printArray(arr, size);
 
-	for(i=1;i<11;i++) {
-
-                std::cout << i << "° element: " << array[i] << std::endl;
-        }
-
-	return 0;
+    heapsort(arr, size);
+    printArray(arr, size);
 }

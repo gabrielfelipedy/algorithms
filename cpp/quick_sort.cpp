@@ -9,12 +9,12 @@ void troca(int array[], int i, int j)
 
 int particao(int array[], int p, int r) {
 
-	int pivo, i, j;
-	pivo = array[(p+r)/2];
-	i = p - 1;
-	j = r + 1;
-	while(i < j) {
+	int pivo = array[(p+r)/2];
+	
+	int i = p - 1;
+	int j = r + 1;
 
+	while(i < j) {
 		do {
 
 			j--;
@@ -25,6 +25,7 @@ int particao(int array[], int p, int r) {
 			i++;
 
 		} while(array[i] < pivo);
+		
 		if(i < j) troca(array, i, j);
 	}
 
@@ -43,20 +44,18 @@ void quick_sort(int array[], int p, int r) {
 
 int main() {
 
-	int array[10], i;
+	int array[10] = {1, 4, 2, 6, 4, 8, 9, 10, -1, 42};
 
-	for(i=0; i < 10; i++)
+	for(int i=0; i < 10; i++)
 	{
-		std::cout << "Type the " <<(i+1)<<"° element: ";
-		std::cin >> array[i];
+		std::cout <<(1+i)<<"° element: "<<array[i]<<std::endl;
 	}
 
 	quick_sort(array, 0, 9);
 
 	//print
-	for(i=0; i < 10; i++)
+	for(int i=0; i < 10; i++)
 	{
 		std::cout <<(1+i)<<"° element: "<<array[i]<<std::endl;
 	}
-	
 }
